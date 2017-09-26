@@ -36,3 +36,9 @@ app.get("/", (req, res) => {
    res.json( {message: "Il va falloir implémenter tout ça..."} );
 });
 
+const dataPath = path.join(__dirname, "../app/data");
+app.use("/data", express.static(dataPath));
+
+app.get("/test", (req, res) => {
+	res.end("OK, tout va bien !");
+})
