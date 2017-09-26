@@ -42,3 +42,35 @@ app.use("/data", express.static(dataPath));
 app.get("/test", (req, res) => {
 	res.end("OK, tout va bien !");
 })
+
+/*app.get("/testParams", (req, res) => {
+	res.json(req.query);
+	ou autre solution : 
+	let str = "";
+		for (let att in req.query){
+		str += `${att}:${req.query[att]}\n`;
+		}
+	res.end();
+})*/
+
+app.get("/testParams", (req, res) => {
+	if (req.body.nom === undefined){
+		res.status(400);
+		res.setHeader("Content-Type", "text/html; charset=UTF-8");
+		res.end("Vous devez spécifier un nom");
+	}
+})
+
+app.post("/addPatient", (req, res) => {
+	if(req.body.name === undefined){
+		// nom, prenom, numSS, addr, sexe, pathologie
+		res.end("Patient créé");
+	}
+})
+
+app.post("/addInf", (req, res) => {
+	if(req.body.name === undefined){
+		// nom, prenom, addr, sexe, patients, ID
+		res.end("Infirmier(e) créé");
+	}
+})
